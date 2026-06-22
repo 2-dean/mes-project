@@ -1,0 +1,15 @@
+### 전체조회
+GET http://localhost:8080/api/items
+
+### 등록
+POST http://localhost:8080/api/items
+Content-Type: application/json
+
+{
+  "itemCode": "PISTON-001",
+  "itemName": "피스톤",
+  "spec": "Φ86mm",
+  "unit": "EA",
+  "unitPrice": 1500,
+  "useYn": "Y"
+}

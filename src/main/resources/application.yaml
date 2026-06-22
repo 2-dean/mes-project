@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: mes-project
+  datasource:
+    url: jdbc:postgresql://localhost:5432/mesdb
+    username: ddu
+    password:
+
+  jpa:
+    hibernate:
+      ddl-auto: update # Entity 변경시 자동으로 테이블에 반영(데이터유지)
+    show-sql: true #실행되는 sql을 콘솔에 출력(개발할때편함)
+    properties:
+      hibernate:
+        format_sql: true
+
+  mybatis:
+    mapper-locations: classpath:mapper/**/*.xml # MyBatis xml파일위치
+    type-aliases-package: com.mes.dto #DTO 클래스 위치(MyBatis에서 자동 인식)
+
+server:
+  port: 8080 #서버실행포트
