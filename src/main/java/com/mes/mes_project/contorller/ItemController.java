@@ -1,5 +1,6 @@
 package com.mes.mes_project.contorller;
 
+import com.mes.mes_project.dto.ItemResponseDto;
 import com.mes.mes_project.entity.Item;
 import com.mes.mes_project.service.ItemService;
 import lombok.RequiredArgsConstructor;
@@ -18,13 +19,14 @@ public class ItemController {
      * 전체조회 get
      */
     @GetMapping
-    public List<Item> findAll() {
+    //public List<Item> findAll() {
+    public List<ItemResponseDto> findAll() {
         return itemService.findAll();
     }
 
     // 단건조회
     @GetMapping("/{id}")
-    public Item findById(@PathVariable Long id) {
+    public ItemResponseDto findById(@PathVariable Long id) {
         return itemService.findById(id);
     }
 
