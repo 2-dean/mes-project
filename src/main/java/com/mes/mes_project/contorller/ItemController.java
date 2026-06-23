@@ -1,5 +1,6 @@
 package com.mes.mes_project.contorller;
 
+import com.mes.mes_project.dto.ItemRequestDto;
 import com.mes.mes_project.dto.ItemResponseDto;
 import com.mes.mes_project.entity.Item;
 import com.mes.mes_project.service.ItemService;
@@ -32,14 +33,14 @@ public class ItemController {
 
     // 등록
     @PostMapping
-    public Item save(@RequestBody Item item) {
+    public ItemResponseDto save(@RequestBody ItemRequestDto item) {
         return  itemService.save(item);
     }
 
     // 수정
     @PutMapping("/{id}")
-    public Item update(@PathVariable Long id,
-                       @RequestBody Item item) {
+    public ItemResponseDto update(@PathVariable Long id,
+                       @RequestBody ItemRequestDto item) {
         return itemService.update(id, item);
     }
 

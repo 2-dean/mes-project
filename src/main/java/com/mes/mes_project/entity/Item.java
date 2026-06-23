@@ -33,7 +33,7 @@ public class Item {
     private LocalDateTime updatedAt;  // 수정일
 
     // 수정
-    public void updateItem(String itemName, String spec,
+    public void update(String itemName, String spec,
                            String unit, int unitPrice, String useYn) {
         this.itemName = itemName;
         this.spec = spec;

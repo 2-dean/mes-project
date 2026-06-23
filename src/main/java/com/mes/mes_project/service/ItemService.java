@@ -51,7 +51,7 @@ public class ItemService {
         // --> JPA가 관리(Dirty Checking)
 
         // 2. 새로운 값으로 업데이트
-        item.updateItem(
+        item.update(
                 updateItem.getItemName(),
                 updateItem.getSpec(),
                 updateItem.getUnit(),
