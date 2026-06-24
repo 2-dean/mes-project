@@ -28,7 +28,7 @@ public class Client {
     private String zipCode;
     private String address;      // 주소
     private String addressDetail;// 상세주소
-    private Double laxt;          // 위도
+    private Double lat;          // 위도
     private Double lng;          // 경도
     private String useYn = "Y";  // 사용여부
     private String createdBy;    // 생성자
@@ -38,8 +38,8 @@ public class Client {
 
     public void update(String clientName, String bizNo, String clientType,
                        String tel, String zipCode, String address,
-                       String addressDetail, Double laxt, Double lng,
-                       String useYn, String updatedBy) {
+                       String addressDetail, Double lat, Double lng,
+                       String useYn) {
         this.clientName = clientName;
         this.bizNo = bizNo;
         this.clientType = clientType;
@@ -47,13 +47,13 @@ public class Client {
         this.zipCode = zipCode;
         this.address = address;
         this.addressDetail = addressDetail;
-        this.laxt = laxt;
+        this.lat = lat;
         this.lng = lng;
         this.useYn = useYn;
         // updatedBy, updatedAt → Auditing으로 나중에 자동화
     }
 
-    public void delete(String updatedBy) {
+    public void delete() {
         this.useYn = "N";
         // updatedBy, updatedAt → Auditing으로 나중에 자동화
     }
