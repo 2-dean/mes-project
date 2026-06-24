@@ -1,0 +1,66 @@
+package com.mes.mes_project.service;
+
+import com.mes.mes_project.entity.Item;
+import com.mes.mes_project.entity.WorkOrder;
+import com.mes.mes_project.repository.ItemRepository;
+import com.mes.mes_project.repository.WorkOrderRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
+public class WorkOrderService {
+
+    private final WorkOrderRepository workOrderRepository;
+    private final ItemRepository itemRepository;
+
+    // 등록
+    public WorkOrder save(WorkOrder workOrder) {
+        return workOrderRepository.save(workOrder);
+    }
+
+    // 조회
+    public List<WorkOrder> findAll() {
+        return workOrderRepository.findAll();
+    }
+
+    // 단건조회
+    public WorkOrder findById(Long id) {
+        return workOrderRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("업무 지시 없음"));
+    }
+
+    // 수정
+    @Transactional
+    public WorkOrder update(Long id, WorkOrder updateWorkOrder) {
+        WorkOrder workOrder = workOrderRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("업무 지시 없음"));
+
+        Item item = itemRepository.findById(updateWorkOrder.getItem().getId())
+                .orElseThrow(() -> new RuntimeException("품목 없음"));
+
+        workOrder.update(
+                item,
+                updateWorkOrder.getPlanQty(),
+                updateWorkOrder.getPlanDate(),
+                updateWorkOrder.getStatus(),
+                updateWorkOrder.getLine(),
+                updateWorkOrder.getWorker(),
+                updateWorkOrder.getRemark(),
+                updateWorkOrder.getUseYn()
+        );
+
+        return workOrder;
+    }
+
+    // 삭제
+    @Transactional
+    public void delete(Long id) {
+        WorkOrder workOrder = workOrderRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("업무 지시 없음"));
+        workOrder.delete();
+    }
+}
