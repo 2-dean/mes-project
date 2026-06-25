@@ -56,6 +56,7 @@ public class ItemService {
                 updateItem.getSpec(),
                 updateItem.getUnit(),
                 updateItem.getUnitPrice(),
+                updateItem.getIncentiveRate(),
                 updateItem.getUseYn()
         );
 

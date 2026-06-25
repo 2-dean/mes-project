@@ -26,6 +26,7 @@ public class Item {
     private String spec; // 스펙
     private String unit; // 단위
     private int unitPrice; //단가
+    private Double incentiveRate; // 인센티브율 (%)
     private String useYn = "Y";  // 기본값 Y
     private String createdBy;   // 생성자
     private String updatedBy;   // 수정자
@@ -34,14 +35,15 @@ public class Item {
 
     // 수정
     public void update(String itemName, String spec,
-                           String unit, int unitPrice, String useYn) {
+                       String unit, int unitPrice,
+                       Double incentiveRate, String useYn) {
         this.itemName = itemName;
         this.spec = spec;
         this.unit = unit;
         this.unitPrice = unitPrice;
+        this.incentiveRate = incentiveRate; // 인센티브추가
         this.useYn = useYn;
     }
-
     // 삭제 (화면에서 삭제 = DB에서 사용여부 N)
     public void delete() {
         this.useYn = "N";

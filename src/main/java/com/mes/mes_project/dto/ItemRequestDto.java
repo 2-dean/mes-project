@@ -17,6 +17,8 @@ public class ItemRequestDto {
     private String spec; // 스펙
     private String unit; // 단위
     private int unitPrice; //단가
+    private Double incentiveRate; // 인센티브
+
     private String useYn = "Y";  // 기본값 Y
 
     //DTO -> Entity 변환
@@ -27,6 +29,7 @@ public class ItemRequestDto {
         item.setSpec(this.spec);
         item.setUnit(this.unit);
         item.setUnitPrice(this.unitPrice);
+        item.setIncentiveRate(this.incentiveRate);
         item.setUseYn(this.useYn);
         return item;
     }

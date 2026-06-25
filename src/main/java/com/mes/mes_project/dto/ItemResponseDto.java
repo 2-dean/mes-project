@@ -19,6 +19,7 @@ public class ItemResponseDto {
     private String spec; // 스펙
     private String unit; // 단위
     private int unitPrice; //단가
+    private Double incentiveRate; // 인센티브
     private String useYn = "Y";  // 기본값 Y
 
     private String createdBy;   // 생성자
@@ -35,6 +36,7 @@ public class ItemResponseDto {
         dto.spec = item.getSpec();
         dto.unit = item.getUnit();
         dto.unitPrice = item.getUnitPrice();
+        dto.incentiveRate = item.getIncentiveRate();
         dto.useYn = item.getUseYn();
         dto.createdBy = item.getCreatedBy();
         dto.updatedBy = item.getUpdatedBy();
@@ -43,7 +45,4 @@ public class ItemResponseDto {
         return dto;
     }
 
-    public void updateItem(String itemName, String spec, String unit, int unitPrice, String useYn) {
-
-    }
 }
