@@ -48,7 +48,6 @@ public class WorkOrderService {
                 updateWorkOrder.getPlanDate(),
                 updateWorkOrder.getStatus(),
                 updateWorkOrder.getLine(),
-                updateWorkOrder.getWorker(),
                 updateWorkOrder.getRemark(),
                 updateWorkOrder.getUseYn()
         );
