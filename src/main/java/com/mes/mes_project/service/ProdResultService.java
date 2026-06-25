@@ -40,7 +40,19 @@ public class ProdResultService {
             throw new RuntimeException("확정된 작업지시는 수정 불가");
         }
 
-        // 3. 오늘 실적 조회 (없으면 자동생성)
+        // 3. 계획수량 초과 체크 ← 추가!
+        int totalProdQty = prodResultRepository
+                .findByWorkOrderId(workOrderId)
+                .stream()
+                .mapToInt(ProdResult::getTotalQty)
+                .sum();
+
+        if (totalProdQty + qty > workOrder.getPlanQty()) {
+            throw new RuntimeException("계획수량 초과! 계획: "
+                    + workOrder.getPlanQty() + "개, 현재: " + totalProdQty + "개");
+        }
+
+        // 4. 오늘 실적 조회 (없으면 자동생성)
         ProdResult result = prodResultRepository
                 .findByWorkOrderIdAndWorkerAndProdDate(
                         workOrderId, worker, LocalDate.now()
@@ -67,8 +79,19 @@ public class ProdResultService {
         if ("Y".equals(workOrder.getConfirmYn())) {
             throw new RuntimeException("확정된 작업지시는 수정 불가");
         }
+        // 3. 계획수량 초과 체크 ← 추가!
+        int totalProdQty = prodResultRepository
+                .findByWorkOrderId(workOrderId)
+                .stream()
+                .mapToInt(ProdResult::getTotalQty)
+                .sum();
 
-        // 3. 오늘 실적 조회 (없으면 자동생성)
+        if (totalProdQty + qty > workOrder.getPlanQty()) {
+            throw new RuntimeException("계획수량 초과! 계획: "
+                    + workOrder.getPlanQty() + "개, 현재: " + totalProdQty + "개");
+        }
+
+        // 4. 오늘 실적 조회 (없으면 자동생성)
         ProdResult result = prodResultRepository
                 .findByWorkOrderIdAndWorkerAndProdDate(
                         workOrderId, worker, LocalDate.now()

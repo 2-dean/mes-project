@@ -55,6 +55,19 @@ public class WorkOrderService {
         return workOrder;
     }
 
+    // 확정
+    @Transactional
+    public void confirm(Long id) {
+        WorkOrder workOrder = findById(id);
+        workOrder.confirm(); // confirmYn = Y
+    }
+
+    // 확정취소
+    @Transactional
+    public void cancelConfirm(Long id) {
+        WorkOrder workOrder = findById(id);
+        workOrder.cancelConfirm(); // confirmYn = N
+    }
     // 삭제
     @Transactional
     public void delete(Long id) {

@@ -38,7 +38,17 @@ public class WorkOrderController {
                             @RequestBody WorkOrder workOrder) {
         return workOrderService.update(id, workOrder);
     }
+    // 확정
+    @PatchMapping("/{id}/confirm")
+    public void confirm(@PathVariable Long id) {
+        workOrderService.confirm(id);
+    }
 
+    // 확정취소
+    @PatchMapping("/{id}/cancel-confirm")
+    public void cancelConfirm(@PathVariable Long id) {
+        workOrderService.cancelConfirm(id);
+    }
     // 삭제
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
