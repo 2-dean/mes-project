@@ -26,7 +26,7 @@ public class Item {
     private String spec; // 스펙
     private String unit; // 단위
     private int unitPrice; //단가
-    private Double incentiveRate; // 인센티브율 (%)
+    private int incentiveRate; // 인센티브율 (%)
     private String useYn = "Y";  // 기본값 Y
     private String createdBy;   // 생성자
     private String updatedBy;   // 수정자
@@ -36,7 +36,7 @@ public class Item {
     // 수정
     public void update(String itemName, String spec,
                        String unit, int unitPrice,
-                       Double incentiveRate, String useYn) {
+                       int incentiveRate, String useYn) {
         this.itemName = itemName;
         this.spec = spec;
         this.unit = unit;

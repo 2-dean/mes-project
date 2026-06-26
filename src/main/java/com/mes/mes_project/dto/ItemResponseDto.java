@@ -19,7 +19,7 @@ public class ItemResponseDto {
     private String spec; // 스펙
     private String unit; // 단위
     private int unitPrice; //단가
-    private Double incentiveRate; // 인센티브
+    private int incentiveRate; // 인센티브
     private String useYn = "Y";  // 기본값 Y
 
     private String createdBy;   // 생성자

@@ -110,4 +110,19 @@ public class ProdResult {
         this.manualQty += qty;
         this.totalQty   = this.scanQty + this.manualQty;
     }
+
+    // 인센티브 금액 계산 캡슐화 할경우!!
+    /*
+    public long calculateAmount() {
+        // 총 생산수량 × 단가 × 인센티브율
+        // = 인센티브 금액
+        int qty = this.totalQty;
+        int unitPrice = this.workOrder.getItem().getUnitPrice();
+        Double rate = this.workOrder.getItem().getIncentiveRate();
+
+        // rate null 체크!
+        if (rate == null) return 0L;
+
+        return (long)(qty * unitPrice * (rate / 100));
+    }*/
 }

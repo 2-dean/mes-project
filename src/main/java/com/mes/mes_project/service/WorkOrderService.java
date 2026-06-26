@@ -60,6 +60,7 @@ public class WorkOrderService {
     public void confirm(Long id) {
         WorkOrder workOrder = findById(id);
         workOrder.confirm(); // confirmYn = Y
+        // 인센티브 계산 추가
     }
 
     // 확정취소

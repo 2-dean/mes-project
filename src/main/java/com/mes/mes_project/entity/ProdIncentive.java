@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -30,11 +31,13 @@ public class ProdIncentive {
 
     private int unitPrice;          // 단가
 
-    private Double incentiveRate;   // 인센티브율
+    private int incentiveRate = 0;  // 계산당시 인센티브비율
 
     private Long amount;            // 인센티브 금액 (qty * unitPrice * incentiveRate)
 
     private String confirmYn = "N"; // 확정여부 (기본값 N)
+    // 필드 추가
+    private LocalDate closeDate; // 일마감 기준일자
 
     private String createdBy;
     private String updatedBy;
@@ -49,7 +52,9 @@ public class ProdIncentive {
      * 생성 메서드 — amount 는 qty * unitPrice * incentiveRate 로 자동 계산
      */
     public static ProdIncentive create(WorkOrder workOrder, String worker,
-                                       int qty, int unitPrice, Double incentiveRate) {
+                                       int qty, int unitPrice, int incentiveRate,
+                                       LocalDate closeDate
+    ) {
         ProdIncentive incentive = new ProdIncentive();
         incentive.workOrder     = workOrder;
         incentive.worker        = worker;
@@ -58,6 +63,7 @@ public class ProdIncentive {
         incentive.incentiveRate = incentiveRate;
         incentive.amount        = calcAmount(qty, unitPrice, incentiveRate);
         incentive.confirmYn     = "N";
+        incentive.closeDate     = closeDate;
         return incentive;
     }
 
@@ -65,7 +71,7 @@ public class ProdIncentive {
      * 수정 메서드 — amount 자동 재계산
      */
     public void update(WorkOrder workOrder, String worker,
-                       int qty, int unitPrice, Double incentiveRate) {
+                       int qty, int unitPrice, int incentiveRate) {
         this.workOrder     = workOrder;
         this.worker        = worker;
         this.qty           = qty;
@@ -89,8 +95,7 @@ public class ProdIncentive {
     }
 
     // amount = qty * unitPrice * incentiveRate
-    private static long calcAmount(int qty, int unitPrice, Double incentiveRate) {
-        if (incentiveRate == null) return 0L;
-        return Math.round(qty * unitPrice * incentiveRate);
+    private static long calcAmount(int qty, int unitPrice, int incentiveRate) {
+        return (long)(qty * unitPrice * incentiveRate / 100.0);
     }
 }
