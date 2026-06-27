@@ -1,4 +1,4 @@
-package com.mes.mes_project.contorller;
+package com.mes.mes_project.controller;
 
 import com.mes.mes_project.entity.ProdIncentive;
 import com.mes.mes_project.service.ProdIncentiveService;

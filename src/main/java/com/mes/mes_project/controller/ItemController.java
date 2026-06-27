@@ -1,8 +1,7 @@
-package com.mes.mes_project.contorller;
+package com.mes.mes_project.controller;
 
 import com.mes.mes_project.dto.ItemRequestDto;
 import com.mes.mes_project.dto.ItemResponseDto;
-import com.mes.mes_project.entity.Item;
 import com.mes.mes_project.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
