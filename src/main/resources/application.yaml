@@ -18,5 +18,9 @@ spring:
     mapper-locations: classpath:mapper/**/*.xml # MyBatis xml파일위치
     type-aliases-package: com.mes.dto #DTO 클래스 위치(MyBatis에서 자동 인식)
 
+jwt:
+  secret: mes-project-jwt-secret-key-2024-very-long-string
+  expiration: 86400000  # 24시간 (밀리초)
+
 server:
   port: 8080 #서버실행포트
