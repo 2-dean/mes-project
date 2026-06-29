@@ -3,15 +3,22 @@ package com.mes.mes_project.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
 @Entity
 @Table(name = "MES_USER")
+@EntityListeners(AuditingEntityListener.class)
 @Getter
 @RequiredArgsConstructor
 public class User implements UserDetails {  // 추가!{
@@ -33,6 +40,20 @@ public class User implements UserDetails {  // 추가!{
     private String role = "USER";  // 권한 (ADMIN, USER)
 
     private String useYn = "Y";
+
+    @CreatedBy
+    @Column(updatable = false)
+    private String createdBy;
+
+    @LastModifiedBy
+    private String updatedBy;
+
+    @CreatedDate
+    @Column(updatable = false)
+    private LocalDateTime createdAt;
+
+    @LastModifiedDate
+    private LocalDateTime updatedAt;
 
     // 비밀번호 변경
     public void changePassword(String password) {

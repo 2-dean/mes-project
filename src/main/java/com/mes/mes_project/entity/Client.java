@@ -4,11 +4,17 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "MES_CLIENT")
+@EntityListeners(AuditingEntityListener.class)
 @Getter @Setter
 @NoArgsConstructor
 public class Client {
@@ -31,9 +37,18 @@ public class Client {
     private Double lat;          // 위도
     private Double lng;          // 경도
     private String useYn = "Y";  // 사용여부
+    @CreatedBy
+    @Column(updatable = false)
     private String createdBy;    // 생성자
+
+    @LastModifiedBy
     private String updatedBy;    // 수정자
+
+    @CreatedDate
+    @Column(updatable = false)
     private LocalDateTime createdAt; // 생성일
+
+    @LastModifiedDate
     private LocalDateTime updatedAt; // 수정일
 
     public void update(String clientName, String bizNo, String clientType,
