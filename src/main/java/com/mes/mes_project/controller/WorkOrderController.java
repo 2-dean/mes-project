@@ -3,8 +3,10 @@ package com.mes.mes_project.controller;
 import com.mes.mes_project.entity.WorkOrder;
 import com.mes.mes_project.service.WorkOrderService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -20,10 +22,17 @@ public class WorkOrderController {
         return workOrderService.save(workOrder);
     }
 
-    // 전체조회
+    // 조회 (검색조건)
     @GetMapping
-    public List<WorkOrder> findAll() {
-        return workOrderService.findAll();
+    public List<WorkOrder> search(
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
+            @RequestParam(required = false) String status,
+            @RequestParam(required = false) String confirmYn
+    ) {
+        String st = (status    != null && status.isBlank())    ? null : status;
+        String cy = (confirmYn != null && confirmYn.isBlank()) ? null : confirmYn;
+        return workOrderService.search(startDate, endDate, st, cy);
     }
 
     // 단건조회

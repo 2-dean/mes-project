@@ -55,6 +55,13 @@ public class User implements UserDetails {  // 추가!{
     @LastModifiedDate
     private LocalDateTime updatedAt;
 
+    // 정보 수정 (비밀번호 제외)
+    public void update(String name, String role, String useYn) {
+        this.name = name;
+        this.role = role;
+        this.useYn = useYn;
+    }
+
     // 비밀번호 변경
     public void changePassword(String password) {
         this.password = password;

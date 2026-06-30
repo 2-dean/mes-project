@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -22,9 +23,15 @@ public class WorkOrderService {
         return workOrderRepository.save(workOrder);
     }
 
-    // 조회
+    // 조회 (전체)
     public List<WorkOrder> findAll() {
         return workOrderRepository.findAll();
+    }
+
+    // 조회 (검색조건)
+    public List<WorkOrder> search(LocalDate startDate, LocalDate endDate,
+                                  String status, String confirmYn) {
+        return workOrderRepository.search(startDate, endDate, status, confirmYn);
     }
 
     // 단건조회

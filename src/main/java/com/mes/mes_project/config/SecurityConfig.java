@@ -45,6 +45,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll() // 누구나 접근가능 (로그인은 허용해야하니깐ㅋ)
                         // ADMIN만
+                        .requestMatchers("/api/users/**").hasRole("ADMIN")
                         .requestMatchers("/api/items/**").hasRole("ADMIN")
                         .requestMatchers("/api/clients/**").hasRole("ADMIN")
                         .requestMatchers("/api/workorders/**").hasRole("ADMIN")
@@ -52,6 +53,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/month-close/**").hasRole("ADMIN")
 
                         // 둘 다
+                        .requestMatchers("/api/common-codes/**").authenticated()
                         .requestMatchers("/api/prod-results/**").authenticated()
                         .requestMatchers("/api/prod-incentives/**").authenticated()
 
