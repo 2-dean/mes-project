@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mes.mes_project.mapper.WorkOrderMapper">
+
+    <!-- DB컬럼명 snack_case, Java 필드명 camelCase-->
+    <!-- 작업지시 검색 -->
+    <select id="search" parameterType="WorkOrderSearchDto" resultType="WorkOrderListDto">
+        SELECT
+        wo.id,
+        wo.work_order_no     AS workOrderNo,
+        i.item_name          AS itemName,
+        wo.plan_qty          AS planQty,
+        wo.plan_date         AS planDate,
+        wo.status,
+        wo.line,
+        wo.confirm_yn        AS confirmYn,
+        wo.created_by        AS createdBy,
+        wo.created_at        AS createdAt
+        FROM mes_work_order wo
+        LEFT JOIN mes_item i ON wo.item_id = i.id
+        WHERE wo.use_yn = 'Y'
+        <if test="startDate != null and startDate != ''">
+            AND wo.plan_date >= CAST(#{startDate} AS date)
+        </if>
+        <if test="endDate != null and endDate != ''">
+            AND wo.plan_date &lt;= CAST(#{endDate} AS date)
+        </if>
+        <if test="status != null and status != ''">
+            AND wo.status = #{status}
+        </if>
+        <if test="confirmYn != null and confirmYn != ''">
+            AND wo.confirm_yn = #{confirmYn}
+        </if>
+        ORDER BY wo.plan_date DESC, wo.id DESC
+    </select>
+
+</mapper>

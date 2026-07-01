@@ -1,7 +1,10 @@
 package com.mes.mes_project.service;
 
+import com.mes.mes_project.dto.workorder.WorkOrderListDto;
+import com.mes.mes_project.dto.workorder.WorkOrderSearchDto;
 import com.mes.mes_project.entity.Item;
 import com.mes.mes_project.entity.WorkOrder;
+import com.mes.mes_project.mapper.WorkOrderMapper;
 import com.mes.mes_project.repository.ItemRepository;
 import com.mes.mes_project.repository.WorkOrderRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,12 +20,19 @@ public class WorkOrderService {
 
     private final WorkOrderRepository workOrderRepository;
     private final ItemRepository itemRepository;
+    private final WorkOrderMapper workOrderMapper;
 
     // 등록
     public WorkOrder save(WorkOrder workOrder) {
         return workOrderRepository.save(workOrder);
     }
 
+    // 검색 (MyBatis)
+    public List<WorkOrderListDto> search(WorkOrderSearchDto searchDto) {
+        return workOrderMapper.search(searchDto);
+    }
+
+/*
     // 조회 (전체)
     public List<WorkOrder> findAll() {
         return workOrderRepository.findAll();
@@ -33,12 +43,13 @@ public class WorkOrderService {
                                   String status, String confirmYn) {
         return workOrderRepository.search(startDate, endDate, status, confirmYn);
     }
-
+*/
     // 단건조회
     public WorkOrder findById(Long id) {
         return workOrderRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("업무 지시 없음"));
     }
+
 
     // 수정
     @Transactional

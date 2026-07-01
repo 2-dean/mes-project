@@ -1,5 +1,7 @@
 package com.mes.mes_project.controller;
 
+import com.mes.mes_project.dto.workorder.WorkOrderListDto;
+import com.mes.mes_project.dto.workorder.WorkOrderSearchDto;
 import com.mes.mes_project.entity.WorkOrder;
 import com.mes.mes_project.service.WorkOrderService;
 import lombok.RequiredArgsConstructor;
@@ -24,15 +26,18 @@ public class WorkOrderController {
 
     // 조회 (검색조건)
     @GetMapping
-    public List<WorkOrder> search(
-            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
-            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
+    public List<WorkOrderListDto> search(
+            @RequestParam(required = false) String startDate,
+            @RequestParam(required = false) String endDate,
             @RequestParam(required = false) String status,
-            @RequestParam(required = false) String confirmYn
-    ) {
-        String st = (status    != null && status.isBlank())    ? null : status;
-        String cy = (confirmYn != null && confirmYn.isBlank()) ? null : confirmYn;
-        return workOrderService.search(startDate, endDate, st, cy);
+            @RequestParam(required = false) String confirmYn) {
+
+        WorkOrderSearchDto searchDto = new WorkOrderSearchDto();
+        searchDto.setStartDate(startDate);
+        searchDto.setEndDate(endDate);
+        searchDto.setStatus(status);
+        searchDto.setConfirmYn(confirmYn);
+        return workOrderService.search(searchDto);
     }
 
     // 단건조회
