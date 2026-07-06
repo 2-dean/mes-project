@@ -6,6 +6,7 @@ import com.mes.mes_project.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -44,19 +45,20 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // 세션 안 쓴다고 설정
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll() // 누구나 접근가능 (로그인은 허용해야하니깐ㅋ)
-                        // ADMIN만
+
+                        // 사용자 관리는 조회(GET)까지 포함해서 ADMIN만
                         .requestMatchers("/api/users/**").hasRole("ADMIN")
-                        .requestMatchers("/api/items/**").hasRole("ADMIN")
-                        .requestMatchers("/api/clients/**").hasRole("ADMIN")
-                        .requestMatchers("/api/workorders/**").hasRole("ADMIN")
-                        .requestMatchers("/api/daily-close/**").hasRole("ADMIN")
-                        .requestMatchers("/api/month-close/**").hasRole("ADMIN")
 
-                        // 둘 다
-                        .requestMatchers("/api/common-codes/**").authenticated()
-                        .requestMatchers("/api/prod-results/**").authenticated()
-                        .requestMatchers("/api/prod-incentives/**").authenticated()
+                        // 생산실적 등록(스캔/수동입력)은 현장 작업자(USER)도 가능
+                        .requestMatchers(HttpMethod.POST, "/api/prod-results/scan", "/api/prod-results/manual").authenticated()
 
+                        // 게스트(USER)는 조회(GET)만 가능, 나머지 쓰기 요청은 ADMIN만 허용
+                        .requestMatchers(HttpMethod.POST, "/api/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PATCH, "/api/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/**").hasRole("ADMIN")
+
+                        // 나머지(GET 등 조회)는 인증만 되면 ADMIN/게스트(USER) 모두 허용
                         .anyRequest().authenticated() // 나머지는 인증필요 (토큰없으면 401에러)
             )
             .addFilterBefore( // JwtFilter를 Spring Security 필터 앞에 추가,  토큰검증후 SecurityContext에 저장

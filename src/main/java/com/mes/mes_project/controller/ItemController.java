@@ -3,6 +3,7 @@ package com.mes.mes_project.controller;
 import com.mes.mes_project.dto.ItemRequestDto;
 import com.mes.mes_project.dto.ItemResponseDto;
 import com.mes.mes_project.service.ItemService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,14 +33,14 @@ public class ItemController {
 
     // 등록
     @PostMapping
-    public ItemResponseDto save(@RequestBody ItemRequestDto item) {
+    public ItemResponseDto save(@Valid @RequestBody ItemRequestDto item) {
         return  itemService.save(item);
     }
 
     // 수정
     @PutMapping("/{id}")
     public ItemResponseDto update(@PathVariable Long id,
-                       @RequestBody ItemRequestDto item) {
+                       @Valid @RequestBody ItemRequestDto item) {
         return itemService.update(id, item);
     }
 
