@@ -8,7 +8,7 @@ spring:
 
   sql:
     init:
-     # mode:  always  # 매 실행마다 data.sql 실행
+      mode: always  # 매 실행마다 data.sql 실행
 
   jpa:
     hibernate:
@@ -33,7 +33,7 @@ mybatis:
 # ──────────────────────────────────────────
 jwt:
   secret: ${JWT_SECRET:mes-project-jwt-secret-key-2026-local-dev}
-  expiration: 86400000 #24시간 밀리초
+  expiration: 7200000 # 2시간  86400000 #24시간 밀리초
 
 # ──────────────────────────────────────────
 # 서버 설정

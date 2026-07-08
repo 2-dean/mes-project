@@ -126,6 +126,15 @@ public class ProdResult {
         this.totalQty   = this.scanQty + this.manualQty;
     }
 
+    /**
+     * 수동입력수량 직접 수정 — 그리드 인라인 수정 시 호출
+     * totalQty 를 즉시 재계산합니다.
+     */
+    public void changeManualQty(int manualQty) {
+        this.manualQty = manualQty;
+        this.totalQty  = this.scanQty + this.manualQty;
+    }
+
     // 인센티브 금액 계산 캡슐화 할경우!!
     /*
     public long calculateAmount() {

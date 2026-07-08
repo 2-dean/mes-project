@@ -41,4 +41,9 @@ public interface WorkOrderRepository extends JpaRepository<WorkOrder, Long> {
     List<LocalDate> findDistinctPlanDateByYearMonth(
             @Param("yearMonth") String yearMonth
     );
+
+    @Query("SELECT w.workOrderNo FROM WorkOrder w " +
+            "WHERE w.workOrderNo LIKE :prefix% " +
+            "ORDER BY w.workOrderNo DESC LIMIT 1")
+    String findLastWorkOrderNoByPrefix(@Param("prefix") String prefix);
 }

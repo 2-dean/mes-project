@@ -52,6 +52,12 @@ public class WorkOrderController {
                             @RequestBody WorkOrder workOrder) {
         return workOrderService.update(id, workOrder);
     }
+    // 작업시작
+    @PatchMapping("/{id}/start")
+    public void startWork(@PathVariable Long id) {
+        workOrderService.startWork(id);
+    }
+
     // 확정
     @PatchMapping("/{id}/confirm")
     public void confirm(@PathVariable Long id) {

@@ -63,6 +63,17 @@ public class WorkOrder {
     @LastModifiedDate
     private LocalDateTime updatedAt;
 
+    public void setWorkOrderNo(String workOrderNo) {
+        this.workOrderNo = workOrderNo;
+    }
+
+    public void startWork() {
+        this.status = "IN_PROGRESS";
+    }
+
+    public void done() {
+        this.status = "DONE";
+    }
 
     // 확정 메서드
     public void confirm() {

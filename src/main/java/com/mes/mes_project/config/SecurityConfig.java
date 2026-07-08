@@ -3,6 +3,7 @@ package com.mes.mes_project.config;
 import com.mes.mes_project.security.CustomUserDetailsService;
 import com.mes.mes_project.security.JwtFilter;
 import com.mes.mes_project.security.JwtUtil;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -43,8 +44,16 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())   // CSRF 보안 끄기 (브라우저 세션기반 공격방어용)
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))  // 추가!
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // 세션 안 쓴다고 설정
+                // 토큰 없음/만료 시 기본값(403) 대신 401을 반환 (프론트에서 401로 세션만료 처리함)
+                .exceptionHandling(ex -> ex.authenticationEntryPoint(
+                        (request, response, authException) ->
+                                response.sendError(HttpServletResponse.SC_UNAUTHORIZED)
+                ))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll() // 누구나 접근가능 (로그인은 허용해야하니깐ㅋ)
+
+                        // 작업자 선택 팝업용 최소정보 조회는 현장 작업자(USER)도 가능 (ADMIN 전용 규칙보다 먼저 매칭되어야 함)
+                        .requestMatchers(HttpMethod.GET, "/api/users/simple").authenticated()
 
                         // 사용자 관리는 조회(GET)까지 포함해서 ADMIN만
                         .requestMatchers("/api/users/**").hasRole("ADMIN")

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -24,6 +25,8 @@ public class WorkOrderService {
 
     // 등록
     public WorkOrder save(WorkOrder workOrder) {
+        String workOrderNo = generateWorkOrderNo();
+        workOrder.setWorkOrderNo(workOrderNo);
         return workOrderRepository.save(workOrder);
     }
 
@@ -32,18 +35,6 @@ public class WorkOrderService {
         return workOrderMapper.search(searchDto);
     }
 
-/*
-    // 조회 (전체)
-    public List<WorkOrder> findAll() {
-        return workOrderRepository.findAll();
-    }
-
-    // 조회 (검색조건)
-    public List<WorkOrder> search(LocalDate startDate, LocalDate endDate,
-                                  String status, String confirmYn) {
-        return workOrderRepository.search(startDate, endDate, status, confirmYn);
-    }
-*/
     // 단건조회
     public WorkOrder findById(Long id) {
         return workOrderRepository.findById(id)
@@ -56,6 +47,13 @@ public class WorkOrderService {
     public WorkOrder update(Long id, WorkOrder updateWorkOrder) {
         WorkOrder workOrder = workOrderRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("업무 지시 없음"));
+
+        if ("IN_PROGRESS".equals(workOrder.getStatus()) || "DONE".equals(workOrder.getStatus())) {
+            throw new RuntimeException("진행중 또는 완료된 작업지시는 수정할 수 없습니다.");
+        }
+        if ("Y".equals(workOrder.getConfirmYn())) {
+            throw new RuntimeException("확정된 작업지시는 수정할 수 없습니다.");
+        }
 
         Item item = itemRepository.findById(updateWorkOrder.getItem().getId())
                 .orElseThrow(() -> new RuntimeException("품목 없음"));
@@ -71,6 +69,14 @@ public class WorkOrderService {
         );
 
         return workOrder;
+    }
+
+    // 작업시작 (WAIT → IN_PROGRESS)
+    @Transactional
+    public void startWork(Long id) {
+        WorkOrder workOrder = workOrderRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("작업지시 없음"));
+        workOrder.startWork();
     }
 
     // 확정
@@ -93,5 +99,23 @@ public class WorkOrderService {
         WorkOrder workOrder = workOrderRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("업무 지시 없음"));
         workOrder.delete();
+    }
+
+    private String generateWorkOrderNo() {
+        // WO-YYYY-MM-001~
+        String prefix = "WO-" +  LocalDate.now().format(
+                DateTimeFormatter.ofPattern("yyyy-MM"));
+
+        // 이번달 마지막 번호 조회
+        String lastNo = workOrderRepository.findLastWorkOrderNoByPrefix(prefix);
+
+        // 다음번호 생성
+        int nextSeq = 1;
+        if(lastNo != null) {
+            nextSeq = Integer.parseInt(lastNo.substring(lastNo.lastIndexOf("-") + 1)) + 1;
+        }
+
+        // WO-2026-07-001 형식으로 반환
+        return String.format("%s-%03d", prefix, nextSeq);
     }
 }

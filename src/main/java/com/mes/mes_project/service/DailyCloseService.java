@@ -41,7 +41,7 @@ public class DailyCloseService {
         // 3. 작업자별 인센티브 계산 → ProdIncentive 저장
         for (WorkOrder workOrder : workOrders) {
             // 작업결과 테이블
-            List<ProdResult> results = prodResultRepository.findByWorkOrderId(workOrder.getId());
+            List<ProdResult> results = prodResultRepository.findByWorkOrderIdAndUseYn(workOrder.getId(), "Y");
             for (ProdResult result : results) {
                 // 인센티브 금액 = 총 생산수량 × 단가 × 인센티브율
                 int qty = result.getTotalQty();
