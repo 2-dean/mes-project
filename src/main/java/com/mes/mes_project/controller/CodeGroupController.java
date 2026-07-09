@@ -1,9 +1,9 @@
 package com.mes.mes_project.controller;
 
-import com.mes.mes_project.dto.CodeGroupRequestDto;
-import com.mes.mes_project.dto.CodeGroupResponseDto;
-import com.mes.mes_project.dto.CommonCodeRequestDto;
-import com.mes.mes_project.dto.CommonCodeResponseDto;
+import com.mes.mes_project.dto.codegroup.CodeGroupRequestDto;
+import com.mes.mes_project.dto.codegroup.CodeGroupResponseDto;
+import com.mes.mes_project.dto.commoncode.CommonCodeRequestDto;
+import com.mes.mes_project.dto.commoncode.CommonCodeResponseDto;
 import com.mes.mes_project.service.CodeGroupService;
 import com.mes.mes_project.service.CommonCodeService;
 import jakarta.validation.Valid;

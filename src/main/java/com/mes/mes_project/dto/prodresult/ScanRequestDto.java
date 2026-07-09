@@ -1,4 +1,4 @@
-package com.mes.mes_project.dto;
+package com.mes.mes_project.dto.prodresult;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

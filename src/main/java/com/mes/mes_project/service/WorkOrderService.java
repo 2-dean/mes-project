@@ -1,4 +1,7 @@
 package com.mes.mes_project.service;
+/**
+ * 작업지시
+ */
 
 import com.mes.mes_project.dto.workorder.WorkOrderListDto;
 import com.mes.mes_project.dto.workorder.WorkOrderSearchDto;
@@ -101,6 +104,7 @@ public class WorkOrderService {
         workOrder.delete();
     }
 
+    // 작업지시 번호 생성
     private String generateWorkOrderNo() {
         // WO-YYYY-MM-001~
         String prefix = "WO-" +  LocalDate.now().format(

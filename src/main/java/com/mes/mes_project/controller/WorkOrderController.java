@@ -46,7 +46,7 @@ public class WorkOrderController {
         return workOrderService.findById(id);
     }
 
-    // 수정
+    // 수정시
     @PutMapping("/{id}")
     public WorkOrder update(@PathVariable Long id,
                             @RequestBody WorkOrder workOrder) {

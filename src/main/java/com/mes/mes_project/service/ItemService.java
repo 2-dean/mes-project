@@ -1,21 +1,23 @@
 package com.mes.mes_project.service;
 
-import com.mes.mes_project.dto.ItemRequestDto;
-import com.mes.mes_project.dto.ItemResponseDto;
+import com.mes.mes_project.dto.item.ItemRequestDto;
+import com.mes.mes_project.dto.item.ItemResponseDto;
+import com.mes.mes_project.dto.item.ItemSearchDto;
 import com.mes.mes_project.entity.Item;
+import com.mes.mes_project.mapper.ItemMapper;
 import com.mes.mes_project.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class ItemService {
 
     private final ItemRepository itemRepository;
+    private final ItemMapper itemMapper;
 
     // 등록
     public ItemResponseDto save(ItemRequestDto requestDto){
@@ -24,13 +26,9 @@ public class ItemService {
         return ItemResponseDto.from(saved); // Entity -> ResponseDTO
     }
 
-    // 전체조회
-    public List<ItemResponseDto> findAll() {
-        //return itemRepository.findAll(); //Entity 리턴 방식
-        return itemRepository.findAll()
-                .stream() //List를 스트림(파이프라인)으로 변환, "이제 하나씩 처리할게" 선언
-                .map(ItemResponseDto::from)// 각 Item을 ItemResponseDto로 변환
-                .collect(Collectors.toList()); // 변환된 것들을 다시 List로 모음
+    // 검색 (MyBatis, 품목명/사용여부)
+    public List<ItemResponseDto> search(ItemSearchDto searchDto) {
+        return itemMapper.search(searchDto);
     }
 
     // 단건조회

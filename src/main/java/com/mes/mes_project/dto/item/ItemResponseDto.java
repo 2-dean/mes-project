@@ -1,4 +1,4 @@
-package com.mes.mes_project.dto;
+package com.mes.mes_project.dto.item;
 
 import com.mes.mes_project.entity.Item;
 import lombok.Getter;
@@ -8,6 +8,7 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 
 @Getter
+@Setter
 @NoArgsConstructor
 public class ItemResponseDto {
     // 조회할때 프론트에게 보내줄 데이터

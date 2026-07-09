@@ -1,4 +1,4 @@
-package com.mes.mes_project.dto;
+package com.mes.mes_project.dto.client;
 
 import com.mes.mes_project.entity.Client;
 import jakarta.validation.constraints.Size;

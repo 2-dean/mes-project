@@ -1,4 +1,4 @@
-package com.mes.mes_project.dto;
+package com.mes.mes_project.dto.user;
 
 import com.mes.mes_project.entity.User;
 import lombok.Getter;

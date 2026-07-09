@@ -1,7 +1,7 @@
 package com.mes.mes_project.service;
 
-import com.mes.mes_project.dto.CommonCodeRequestDto;
-import com.mes.mes_project.dto.CommonCodeResponseDto;
+import com.mes.mes_project.dto.commoncode.CommonCodeRequestDto;
+import com.mes.mes_project.dto.commoncode.CommonCodeResponseDto;
 import com.mes.mes_project.entity.CodeGroup;
 import com.mes.mes_project.entity.CommonCode;
 import com.mes.mes_project.repository.CodeGroupRepository;

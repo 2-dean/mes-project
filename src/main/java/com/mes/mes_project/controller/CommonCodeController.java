@@ -1,6 +1,6 @@
 package com.mes.mes_project.controller;
 
-import com.mes.mes_project.dto.CommonCodeResponseDto;
+import com.mes.mes_project.dto.commoncode.CommonCodeResponseDto;
 import com.mes.mes_project.service.CommonCodeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

@@ -1,4 +1,4 @@
-package com.mes.mes_project.dto;
+package com.mes.mes_project.dto.codegroup;
 
 import com.mes.mes_project.entity.CodeGroup;
 import jakarta.validation.constraints.Size;

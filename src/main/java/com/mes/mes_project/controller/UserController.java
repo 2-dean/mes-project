@@ -1,9 +1,9 @@
 package com.mes.mes_project.controller;
 
-import com.mes.mes_project.dto.UserPasswordDto;
-import com.mes.mes_project.dto.UserRequestDto;
-import com.mes.mes_project.dto.UserResponseDto;
-import com.mes.mes_project.dto.UserSimpleDto;
+import com.mes.mes_project.dto.user.UserPasswordDto;
+import com.mes.mes_project.dto.user.UserRequestDto;
+import com.mes.mes_project.dto.user.UserResponseDto;
+import com.mes.mes_project.dto.user.UserSimpleDto;
 import com.mes.mes_project.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

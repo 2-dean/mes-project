@@ -1,7 +1,7 @@
 package com.mes.mes_project.controller;
 
-import com.mes.mes_project.dto.ManualQtyUpdateDto;
-import com.mes.mes_project.dto.ScanRequestDto;
+import com.mes.mes_project.dto.prodresult.ManualQtyUpdateDto;
+import com.mes.mes_project.dto.prodresult.ScanRequestDto;
 import com.mes.mes_project.entity.ProdResult;
 import com.mes.mes_project.service.ProdResultService;
 import lombok.RequiredArgsConstructor;

@@ -1,7 +1,7 @@
 package com.mes.mes_project.controller;
 
-import com.mes.mes_project.dto.LoginRequestDto;
-import com.mes.mes_project.dto.LoginResponseDto;
+import com.mes.mes_project.dto.user.LoginRequestDto;
+import com.mes.mes_project.dto.user.LoginResponseDto;
 import com.mes.mes_project.entity.User;
 import com.mes.mes_project.repository.UserRepository;
 import com.mes.mes_project.security.JwtUtil;

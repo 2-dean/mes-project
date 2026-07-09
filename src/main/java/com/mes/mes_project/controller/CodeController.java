@@ -1,7 +1,7 @@
 package com.mes.mes_project.controller;
 
-import com.mes.mes_project.dto.CommonCodeRequestDto;
-import com.mes.mes_project.dto.CommonCodeResponseDto;
+import com.mes.mes_project.dto.commoncode.CommonCodeRequestDto;
+import com.mes.mes_project.dto.commoncode.CommonCodeResponseDto;
 import com.mes.mes_project.service.CommonCodeService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

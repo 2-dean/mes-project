@@ -1,6 +1,8 @@
 package com.mes.mes_project.controller;
 
-import com.mes.mes_project.dto.ClientRequestDto;
+import com.mes.mes_project.dto.client.ClientRequestDto;
+import com.mes.mes_project.dto.client.ClientResponseDto;
+import com.mes.mes_project.dto.client.ClientSearchDto;
 import com.mes.mes_project.entity.Client;
 import com.mes.mes_project.service.ClientService;
 import jakarta.validation.Valid;
@@ -22,10 +24,16 @@ public class ClientController {
         return clientService.save(request.toEntity());
     }
 
-    // 전체조회
+    // 조회 (검색조건: 거래처명, 사용여부)
     @GetMapping
-    public List<Client> findAll() {
-        return clientService.findAll();
+    public List<ClientResponseDto> search(
+            @RequestParam(required = false) String clientName,
+            @RequestParam(required = false) String useYn
+    ) {
+        ClientSearchDto searchDto = new ClientSearchDto();
+        searchDto.setClientName(clientName);
+        searchDto.setUseYn(useYn);
+        return clientService.search(searchDto);
     }
 
     // 단건조회

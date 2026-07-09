@@ -1,7 +1,8 @@
 package com.mes.mes_project.controller;
 
-import com.mes.mes_project.dto.ItemRequestDto;
-import com.mes.mes_project.dto.ItemResponseDto;
+import com.mes.mes_project.dto.item.ItemRequestDto;
+import com.mes.mes_project.dto.item.ItemResponseDto;
+import com.mes.mes_project.dto.item.ItemSearchDto;
 import com.mes.mes_project.service.ItemService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -16,13 +17,16 @@ public class ItemController {
 
     private final ItemService itemService;
 
-    /**
-     * 전체조회 get
-     */
+    // 조회 (검색조건: 품목명, 사용여부)
     @GetMapping
-    //public List<Item> findAll() {
-    public List<ItemResponseDto> findAll() {
-        return itemService.findAll();
+    public List<ItemResponseDto> search(
+            @RequestParam(required = false) String itemName,
+            @RequestParam(required = false) String useYn) {
+
+        ItemSearchDto searchDto = new ItemSearchDto();
+        searchDto.setItemName(itemName);
+        searchDto.setUseYn(useYn);
+        return itemService.search(searchDto);
     }
 
     // 단건조회

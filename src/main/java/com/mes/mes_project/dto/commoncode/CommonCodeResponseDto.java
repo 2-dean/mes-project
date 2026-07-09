@@ -1,4 +1,4 @@
-package com.mes.mes_project.dto;
+package com.mes.mes_project.dto.commoncode;
 
 import com.mes.mes_project.entity.CommonCode;
 import lombok.Getter;
