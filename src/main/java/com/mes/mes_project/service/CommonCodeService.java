@@ -60,11 +60,11 @@ public class CommonCodeService {
         return CommonCodeResponseDto.from(commonCode);
     }
 
-    // 삭제
+    // 삭제 (db에서 사용여부만 변경)
     @Transactional
     public void delete(Long id) {
         CommonCode commonCode = commonCodeRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("세부코드 없음"));
-        commonCodeRepository.delete(commonCode);
+        commonCode.delete();
     }
 }

@@ -54,4 +54,9 @@ public class CodeGroup {
         this.description = description;
         this.useYn = useYn;
     }
+
+    // 삭제 (화면에서 삭제 = DB에서 사용여부 N)
+    public void delete() {
+        this.useYn = "N";
+    }
 }

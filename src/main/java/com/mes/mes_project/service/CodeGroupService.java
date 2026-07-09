@@ -3,6 +3,7 @@ package com.mes.mes_project.service;
 import com.mes.mes_project.dto.codegroup.CodeGroupRequestDto;
 import com.mes.mes_project.dto.codegroup.CodeGroupResponseDto;
 import com.mes.mes_project.entity.CodeGroup;
+import com.mes.mes_project.entity.CommonCode;
 import com.mes.mes_project.repository.CodeGroupRepository;
 import com.mes.mes_project.repository.CommonCodeRepository;
 import lombok.RequiredArgsConstructor;
@@ -42,12 +43,12 @@ public class CodeGroupService {
         return CodeGroupResponseDto.from(group);
     }
 
-    // 삭제 (하위 세부코드 함께 삭제)
+    // 삭제 (db에서 사용여부만 변경, 하위 세부코드도 함께 사용안함 처리)
     @Transactional
     public void delete(Long id) {
         CodeGroup group = codeGroupRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("그룹코드 없음"));
-        commonCodeRepository.deleteAll(commonCodeRepository.findByGroup_Id(id));
-        codeGroupRepository.delete(group);
+        commonCodeRepository.findByGroup_Id(id).forEach(CommonCode::delete);
+        group.delete();
     }
 }
