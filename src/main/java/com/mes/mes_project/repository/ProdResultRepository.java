@@ -27,7 +27,7 @@ public interface ProdResultRepository extends JpaRepository<ProdResult, Long> {
            " AND (:itemId   IS NULL OR r.workOrder.item.id = :itemId)" +
            " AND (:line     IS NULL OR r.workOrder.line = :line)" +
            " AND (CAST(:prodDate AS date) IS NULL OR r.prodDate = :prodDate)" +
-           " ORDER BY r.prodDate DESC, r.id DESC")
+           " ORDER BY r.workOrder.workOrderNo , r.workOrder.item.itemName, r.worker ")
     List<ProdResult> search(
             @Param("itemId")   Long itemId,
             @Param("line")     String line,

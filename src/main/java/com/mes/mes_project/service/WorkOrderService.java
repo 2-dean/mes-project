@@ -8,6 +8,7 @@ import com.mes.mes_project.dto.workorder.WorkOrderSearchDto;
 import com.mes.mes_project.entity.Item;
 import com.mes.mes_project.entity.WorkOrder;
 import com.mes.mes_project.mapper.WorkOrderMapper;
+import com.mes.mes_project.repository.DailyCloseRepository;
 import com.mes.mes_project.repository.ItemRepository;
 import com.mes.mes_project.repository.WorkOrderRepository;
 import lombok.RequiredArgsConstructor;
@@ -25,11 +26,13 @@ public class WorkOrderService {
     private final WorkOrderRepository workOrderRepository;
     private final ItemRepository itemRepository;
     private final WorkOrderMapper workOrderMapper;
+    private final DailyCloseRepository dailyCloseRepository;
 
     // 등록
     public WorkOrder save(WorkOrder workOrder) {
         String workOrderNo = generateWorkOrderNo();
         workOrder.setWorkOrderNo(workOrderNo);
+        workOrder.initStatus(); // WAIT으로 상태 초기화
         return workOrderRepository.save(workOrder);
     }
 
@@ -94,6 +97,14 @@ public class WorkOrderService {
     @Transactional
     public void cancelConfirm(Long id) {
         WorkOrder workOrder = findById(id);
+
+        boolean closed = dailyCloseRepository.findByCloseDate(workOrder.getPlanDate())
+                .map(dc -> "Y".equals(dc.getCloseYn()))
+                .orElse(false);
+        if (closed) {
+            throw new RuntimeException("일마감 처리된 작업지시는 마감취소할 수 없습니다.");
+        }
+
         workOrder.cancelConfirm(); // confirmYn = N
     }
     // 삭제
@@ -101,6 +112,13 @@ public class WorkOrderService {
     public void delete(Long id) {
         WorkOrder workOrder = workOrderRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("업무 지시 없음"));
+
+        // 진행중/완료면 삭제 불가
+        if ("IN_PROGRESS".equals(workOrder.getStatus()) ||
+                "DONE".equals(workOrder.getStatus())) {
+            throw new RuntimeException("진행중이거나 완료된 작업지시는 삭제할 수 없습니다");
+        }
+
         workOrder.delete();
     }
 

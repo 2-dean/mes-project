@@ -143,6 +143,9 @@ public class ProdResultService {
 
         if (otherTotalQty + newRowTotal >= workOrder.getPlanQty()) {
             workOrder.done();
+        } else if ("DONE".equals(workOrder.getStatus())) {
+            // 수동수량을 하향 수정해 계획수량 미달로 돌아간 경우, 완료 상태를 되돌림
+            workOrder.startWork();
         }
     }
 

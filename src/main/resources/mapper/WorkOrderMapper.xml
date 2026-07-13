@@ -16,6 +16,7 @@
         wo.plan_date         AS planDate,
         wo.status,
         wo.line,
+        wo.remark,
         wo.confirm_yn        AS confirmYn,
         wo.created_by        AS createdBy,
         wo.created_at        AS createdAt,

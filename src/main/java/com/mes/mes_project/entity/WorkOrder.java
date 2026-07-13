@@ -63,6 +63,11 @@ public class WorkOrder {
     @LastModifiedDate
     private LocalDateTime updatedAt;
 
+    // 대기 상태로 초기화
+    public void initStatus() {
+        this.status = "WAIT";
+    }
+
     public void setWorkOrderNo(String workOrderNo) {
         this.workOrderNo = workOrderNo;
     }
