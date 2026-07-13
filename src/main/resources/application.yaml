@@ -2,9 +2,10 @@ spring:
   application:
     name: mes-project
   datasource:
-    url: jdbc:postgresql://${PGHOST:localhost}:${PGPORT:5432}/${PGDATABASE:mesdb}
-    username: ${PGUSER:ddu}
-    password: ${PGPASSWORD:}
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/mesdb}
+    username: ${SPRING_DATASOURCE_USERNAME:ddu}
+    password: ${SPRING_DATASOURCE_PASSWORD:}
+
 
   sql:
     init:
