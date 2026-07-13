@@ -69,7 +69,7 @@ VALUES
     ((SELECT id FROM MES_CODE_GROUP WHERE group_code = 'CD003'), 'C_LINE', 'C라인', 3, 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW());
 
 -- =============================================
--- MES_WORK_ORDER (2026-07-01 ~ 2026-07-07 더미 + 오늘(진행중) 2건)
+-- MES_WORK_ORDER (2026-07-01 ~ 2026-07-12 더미 + 오늘(진행중) 2건)
 -- =============================================
 INSERT INTO MES_WORK_ORDER (work_order_no, item_id, plan_qty, plan_date, status, line, remark, use_yn, confirm_yn, created_by, created_at, updated_by, updated_at)
 VALUES
@@ -98,12 +98,30 @@ VALUES
     ('WO-2026-019', (SELECT id FROM MES_ITEM WHERE item_code = 'ITEM-002'), 230, DATE '2026-07-07', 'DONE', 'C라인', '크랭크샤프트 생산', 'Y', 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
     ('WO-2026-020', (SELECT id FROM MES_ITEM WHERE item_code = 'ITEM-001'), 360, DATE '2026-07-07', 'DONE', 'A라인', '피스톤 생산', 'Y', 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
     ('WO-2026-021', (SELECT id FROM MES_ITEM WHERE item_code = 'ITEM-003'), 280, DATE '2026-07-07', 'DONE', 'B라인', '실린더헤드 생산', 'Y', 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    -- 07-08
+    ('WO-2026-024', (SELECT id FROM MES_ITEM WHERE item_code = 'ITEM-001'), 280, DATE '2026-07-08', 'DONE', 'A라인', '피스톤 생산', 'Y', 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ('WO-2026-025', (SELECT id FROM MES_ITEM WHERE item_code = 'ITEM-002'), 200, DATE '2026-07-08', 'DONE', 'B라인', '크랭크샤프트 생산', 'Y', 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ('WO-2026-026', (SELECT id FROM MES_ITEM WHERE item_code = 'ITEM-003'), 350, DATE '2026-07-08', 'DONE', 'C라인', '실린더헤드 생산', 'Y', 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    -- 07-09
+    ('WO-2026-027', (SELECT id FROM MES_ITEM WHERE item_code = 'ITEM-003'), 320, DATE '2026-07-09', 'DONE', 'A라인', '실린더헤드 생산', 'Y', 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ('WO-2026-028', (SELECT id FROM MES_ITEM WHERE item_code = 'ITEM-001'), 410, DATE '2026-07-09', 'DONE', 'C라인', '피스톤 생산', 'Y', 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    -- 07-10
+    ('WO-2026-029', (SELECT id FROM MES_ITEM WHERE item_code = 'ITEM-002'), 240, DATE '2026-07-10', 'DONE', 'A라인', '크랭크샤프트 생산', 'Y', 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ('WO-2026-030', (SELECT id FROM MES_ITEM WHERE item_code = 'ITEM-001'), 300, DATE '2026-07-10', 'DONE', 'B라인', '피스톤 생산', 'Y', 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ('WO-2026-031', (SELECT id FROM MES_ITEM WHERE item_code = 'ITEM-003'), 180, DATE '2026-07-10', 'DONE', 'C라인', '실린더헤드 생산', 'Y', 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    -- 07-11
+    ('WO-2026-032', (SELECT id FROM MES_ITEM WHERE item_code = 'ITEM-001'), 460, DATE '2026-07-11', 'DONE', 'A라인', '피스톤 생산', 'Y', 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ('WO-2026-033', (SELECT id FROM MES_ITEM WHERE item_code = 'ITEM-002'), 210, DATE '2026-07-11', 'DONE', 'C라인', '크랭크샤프트 생산', 'Y', 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    -- 07-12
+    ('WO-2026-034', (SELECT id FROM MES_ITEM WHERE item_code = 'ITEM-003'), 390, DATE '2026-07-12', 'DONE', 'B라인', '실린더헤드 생산', 'Y', 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ('WO-2026-035', (SELECT id FROM MES_ITEM WHERE item_code = 'ITEM-001'), 150, DATE '2026-07-12', 'DONE', 'A라인', '피스톤 생산', 'Y', 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ('WO-2026-036', (SELECT id FROM MES_ITEM WHERE item_code = 'ITEM-002'), 330, DATE '2026-07-12', 'DONE', 'B라인', '크랭크샤프트 생산', 'Y', 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
     -- 오늘 (진행중, 생산실적 일부만 입력)
     ('WO-2026-022', (SELECT id FROM MES_ITEM WHERE item_code = 'ITEM-001'), 300, CURRENT_DATE, 'IN_PROGRESS', 'A라인', '피스톤 생산', 'Y', 'N', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
     ('WO-2026-023', (SELECT id FROM MES_ITEM WHERE item_code = 'ITEM-002'), 250, CURRENT_DATE, 'IN_PROGRESS', 'B라인', '크랭크샤프트 생산', 'Y', 'N', 'SYSTEM', NOW(), 'SYSTEM', NOW());
 
 -- =============================================
--- MES_PROD_RESULT (작업지시별 작업자 2~3명, 07-08은 일부만 입력)
+-- MES_PROD_RESULT (작업지시별 작업자 2~3명, 오늘(진행중) 은 일부만 입력)
 -- =============================================
 INSERT INTO MES_PROD_RESULT (work_order_id, worker, scan_qty, manual_qty, total_qty, prod_date, remark, use_yn, created_by, created_at, updated_by, updated_at)
 VALUES
@@ -157,12 +175,50 @@ VALUES
     ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-020'), 'user2', 150, 12, 162, DATE '2026-07-07', NULL, 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
     ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-021'), 'user2', 170, 5,  175, DATE '2026-07-07', NULL, 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
     ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-021'), 'user3', 100, 15, 115, DATE '2026-07-07', NULL, 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    -- 07-08
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-024'), 'user1', 168, 12, 180, DATE '2026-07-08', NULL, 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-024'), 'user2', 154, 8,  162, DATE '2026-07-08', NULL, 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-024'), 'user3', 196, 20, 216, DATE '2026-07-08', NULL, 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-025'), 'user1', 130, 10, 140, DATE '2026-07-08', NULL, 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-025'), 'user2', 100, 5,  105, DATE '2026-07-08', NULL, 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-026'), 'user1', 210, 15, 225, DATE '2026-07-08', NULL, 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-026'), 'user2', 263, 8,  271, DATE '2026-07-08', NULL, 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-026'), 'user3', 193, 22, 215, DATE '2026-07-08', NULL, 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    -- 07-09
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-027'), 'user2', 224, 10, 234, DATE '2026-07-09', NULL, 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-027'), 'user3', 186, 18, 204, DATE '2026-07-09', NULL, 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-028'), 'user1', 254, 20, 274, DATE '2026-07-09', NULL, 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-028'), 'user2', 205, 6,  211, DATE '2026-07-09', NULL, 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-028'), 'user3', 320, 25, 345, DATE '2026-07-09', NULL, 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    -- 07-10
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-029'), 'user1', 163, 9,  172, DATE '2026-07-10', NULL, 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-029'), 'user3', 132, 14, 146, DATE '2026-07-10', NULL, 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-030'), 'user1', 180, 10, 190, DATE '2026-07-10', NULL, 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-030'), 'user2', 216, 18, 234, DATE '2026-07-10', NULL, 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-030'), 'user3', 150, 5,  155, DATE '2026-07-10', NULL, 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-031'), 'user2', 119, 12, 131, DATE '2026-07-10', NULL, 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-031'), 'user3', 144, 22, 166, DATE '2026-07-10', NULL, 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    -- 07-11
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-032'), 'user1', 253, 15, 268, DATE '2026-07-11', NULL, 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-032'), 'user2', 290, 20, 310, DATE '2026-07-11', NULL, 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-032'), 'user3', 230, 8,  238, DATE '2026-07-11', NULL, 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-033'), 'user1', 147, 10, 157, DATE '2026-07-11', NULL, 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-033'), 'user2', 122, 16, 138, DATE '2026-07-11', NULL, 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    -- 07-12
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-034'), 'user1', 234, 12, 246, DATE '2026-07-12', NULL, 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-034'), 'user2', 203, 9,  212, DATE '2026-07-12', NULL, 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-034'), 'user3', 293, 20, 313, DATE '2026-07-12', NULL, 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-035'), 'user2', 102, 14, 116, DATE '2026-07-12', NULL, 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-035'), 'user3', 84,  6,  90,  DATE '2026-07-12', NULL, 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-036'), 'user1', 211, 18, 229, DATE '2026-07-12', NULL, 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-036'), 'user2', 165, 10, 175, DATE '2026-07-12', NULL, 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-036'), 'user3', 257, 25, 282, DATE '2026-07-12', NULL, 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
     -- 오늘 (진행중이라 생산실적 일부만 입력됨)
     ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-022'), 'user1', 80,  0,  80,  CURRENT_DATE, NULL, 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
     ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-023'), 'user2', 60,  5,  65,  CURRENT_DATE, NULL, 'Y', 'SYSTEM', NOW(), 'SYSTEM', NOW());
 
 -- =============================================
--- MES_DAILY_CLOSE (2026-07-01 ~ 2026-07-06 마감처리, 07-07은 미마감)
+-- MES_DAILY_CLOSE (2026-07-01 ~ 2026-07-12 마감처리, 오늘(07-13)은 미마감)
 -- =============================================
 INSERT INTO MES_DAILY_CLOSE (close_date, close_yn, closed_by, closed_at, created_by, created_at, updated_by, updated_at)
 VALUES
@@ -171,10 +227,16 @@ VALUES
     (DATE '2026-07-03', 'Y', 'manager1', TIMESTAMP '2026-07-03 18:30:00', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
     (DATE '2026-07-04', 'Y', 'manager1', TIMESTAMP '2026-07-04 18:30:00', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
     (DATE '2026-07-05', 'Y', 'manager1', TIMESTAMP '2026-07-05 18:30:00', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
-    (DATE '2026-07-06', 'Y', 'manager1', TIMESTAMP '2026-07-06 18:30:00', 'SYSTEM', NOW(), 'SYSTEM', NOW());
+    (DATE '2026-07-06', 'Y', 'manager1', TIMESTAMP '2026-07-06 18:30:00', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    (DATE '2026-07-07', 'Y', 'manager1', TIMESTAMP '2026-07-07 18:30:00', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    (DATE '2026-07-08', 'Y', 'manager1', TIMESTAMP '2026-07-08 18:30:00', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    (DATE '2026-07-09', 'Y', 'manager1', TIMESTAMP '2026-07-09 18:30:00', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    (DATE '2026-07-10', 'Y', 'manager1', TIMESTAMP '2026-07-10 18:30:00', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    (DATE '2026-07-11', 'Y', 'manager1', TIMESTAMP '2026-07-11 18:30:00', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    (DATE '2026-07-12', 'Y', 'manager1', TIMESTAMP '2026-07-12 18:30:00', 'SYSTEM', NOW(), 'SYSTEM', NOW());
 
 -- =============================================
--- MES_PROD_INCENTIVE (일마감된 07-01~07-06 기준, amount = qty * unit_price * incentive_rate / 100)
+-- MES_PROD_INCENTIVE (일마감된 07-01~07-12 기준, amount = qty * unit_price * incentive_rate / 100)
 -- =============================================
 INSERT INTO MES_PROD_INCENTIVE (work_order_id, worker, qty, unit_price, incentive_rate, amount, confirm_yn, close_date, created_by, created_at, updated_by, updated_at)
 VALUES
@@ -219,4 +281,50 @@ VALUES
     ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-017'), 'user2', 155, 15000, 5, 116250, 'N', DATE '2026-07-06', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
     ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-017'), 'user3', 128, 15000, 5, 96000,  'N', DATE '2026-07-06', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
     ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-018'), 'user1', 248, 45000, 4, 446400, 'N', DATE '2026-07-06', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
-    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-018'), 'user3', 162, 45000, 4, 291600, 'N', DATE '2026-07-06', 'SYSTEM', NOW(), 'SYSTEM', NOW());
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-018'), 'user3', 162, 45000, 4, 291600, 'N', DATE '2026-07-06', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    -- 07-07
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-019'), 'user1', 145, 85000, 3, 369750, 'N', DATE '2026-07-07', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-019'), 'user2', 110, 85000, 3, 280500, 'N', DATE '2026-07-07', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-019'), 'user3', 100, 85000, 3, 255000, 'N', DATE '2026-07-07', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-020'), 'user1', 228, 15000, 5, 171000, 'N', DATE '2026-07-07', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-020'), 'user2', 162, 15000, 5, 121500, 'N', DATE '2026-07-07', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-021'), 'user2', 175, 45000, 4, 315000, 'N', DATE '2026-07-07', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-021'), 'user3', 115, 45000, 4, 207000, 'N', DATE '2026-07-07', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    -- 07-08
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-024'), 'user1', 180, 15000, 5, 135000, 'N', DATE '2026-07-08', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-024'), 'user2', 162, 15000, 5, 121500, 'N', DATE '2026-07-08', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-024'), 'user3', 216, 15000, 5, 162000, 'N', DATE '2026-07-08', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-025'), 'user1', 140, 85000, 3, 357000, 'N', DATE '2026-07-08', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-025'), 'user2', 105, 85000, 3, 267750, 'N', DATE '2026-07-08', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-026'), 'user1', 225, 45000, 4, 405000, 'N', DATE '2026-07-08', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-026'), 'user2', 271, 45000, 4, 487800, 'N', DATE '2026-07-08', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-026'), 'user3', 215, 45000, 4, 387000, 'N', DATE '2026-07-08', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    -- 07-09
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-027'), 'user2', 234, 45000, 4, 421200, 'N', DATE '2026-07-09', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-027'), 'user3', 204, 45000, 4, 367200, 'N', DATE '2026-07-09', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-028'), 'user1', 274, 15000, 5, 205500, 'N', DATE '2026-07-09', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-028'), 'user2', 211, 15000, 5, 158250, 'N', DATE '2026-07-09', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-028'), 'user3', 345, 15000, 5, 258750, 'N', DATE '2026-07-09', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    -- 07-10
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-029'), 'user1', 172, 85000, 3, 438600, 'N', DATE '2026-07-10', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-029'), 'user3', 146, 85000, 3, 372300, 'N', DATE '2026-07-10', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-030'), 'user1', 190, 15000, 5, 142500, 'N', DATE '2026-07-10', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-030'), 'user2', 234, 15000, 5, 175500, 'N', DATE '2026-07-10', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-030'), 'user3', 155, 15000, 5, 116250, 'N', DATE '2026-07-10', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-031'), 'user2', 131, 45000, 4, 235800, 'N', DATE '2026-07-10', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-031'), 'user3', 166, 45000, 4, 298800, 'N', DATE '2026-07-10', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    -- 07-11
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-032'), 'user1', 268, 15000, 5, 201000, 'N', DATE '2026-07-11', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-032'), 'user2', 310, 15000, 5, 232500, 'N', DATE '2026-07-11', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-032'), 'user3', 238, 15000, 5, 178500, 'N', DATE '2026-07-11', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-033'), 'user1', 157, 85000, 3, 400350, 'N', DATE '2026-07-11', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-033'), 'user2', 138, 85000, 3, 351900, 'N', DATE '2026-07-11', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    -- 07-12
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-034'), 'user1', 246, 45000, 4, 442800, 'N', DATE '2026-07-12', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-034'), 'user2', 212, 45000, 4, 381600, 'N', DATE '2026-07-12', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-034'), 'user3', 313, 45000, 4, 563400, 'N', DATE '2026-07-12', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-035'), 'user2', 116, 15000, 5, 87000,  'N', DATE '2026-07-12', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-035'), 'user3', 90,  15000, 5, 67500,  'N', DATE '2026-07-12', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-036'), 'user1', 229, 85000, 3, 583950, 'N', DATE '2026-07-12', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-036'), 'user2', 175, 85000, 3, 446250, 'N', DATE '2026-07-12', 'SYSTEM', NOW(), 'SYSTEM', NOW()),
+    ((SELECT id FROM MES_WORK_ORDER WHERE work_order_no = 'WO-2026-036'), 'user3', 282, 85000, 3, 719100, 'N', DATE '2026-07-12', 'SYSTEM', NOW(), 'SYSTEM', NOW());
