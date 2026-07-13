@@ -2,9 +2,9 @@ spring:
   application:
     name: mes-project
   datasource:
-    url: jdbc:postgresql://localhost:5432/mesdb
-    username: ddu
-    password:
+    url: jdbc:postgresql://${PGHOST:localhost}:${PGPORT:5432}/${PGDATABASE:mesdb}
+    username: ${PGUSER:ddu}
+    password: ${PGPASSWORD:}
 
   sql:
     init:
@@ -39,4 +39,4 @@ jwt:
 # 서버 설정
 # ──────────────────────────────────────────
 server:
-  port: 8080
+  port: ${PORT:8080}
