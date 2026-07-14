@@ -29,7 +29,6 @@
 - 사용자 관리
 
 ## ERD
-# ERD (Entity Relationship Diagram)
 
 `src/main/java/com/mes/mes_project/entity` 하위 JPA Entity를 기준으로 작성했습니다.
 
