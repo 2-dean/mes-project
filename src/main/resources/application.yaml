@@ -18,7 +18,7 @@ spring:
     defer-datasource-initialization: true  # Hibernate 스키마 생성 후 data.sql 실행
     properties:
       hibernate:
-        format_sql: true
+        format_sql: false #개발환경에서만 true
 
 # ──────────────────────────────────────────
 # MyBatis 설정
