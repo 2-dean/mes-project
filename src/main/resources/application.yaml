@@ -9,7 +9,7 @@ spring:
 
   sql:
     init:
-      mode: always  # 매 실행마다 data.sql 실행
+      mode: never #always  # 매 실행마다 data.sql 실행
 
   jpa:
     hibernate:
