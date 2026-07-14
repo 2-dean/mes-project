@@ -182,4 +182,12 @@ erDiagram
 - **MES_PROD_INCENTIVE.close_date** — `MES_DAILY_CLOSE.close_date`와 논리적으로 연결되는 값이지만, DB상 FK 제약으로 걸려있지는 않습니다.
 
 ## 화면 스크린샷
-(추후 추가)
+
+- 로그인
+<img width="1988" height="1118" alt="스크린샷 2026-07-14 오전 9 59 53" src="https://github.com/user-attachments/assets/5e7456ad-3982-4a9e-ab2a-0465f4d54cb2" />
+- 대시보드
+<img width="2032" height="1162" alt="스크린샷 2026-07-14 오전 10 00 07" src="https://github.com/user-attachments/assets/023bb202-f38f-4242-b013-fca3fd01331f" />
+- 품목관리
+<img width="2032" height="1162" alt="스크린샷 2026-07-14 오전 10 00 16" src="https://github.com/user-attachments/assets/745d3f2e-2e6b-4fa1-a2a8-2634a272e289" />
+- 생산실적
+<img width="2032" height="1162" alt="스크린샷 2026-07-14 오전 10 00 22" src="https://github.com/user-attachments/assets/6e9d75f1-356e-4c48-8b0d-ee7d990a968a" />
