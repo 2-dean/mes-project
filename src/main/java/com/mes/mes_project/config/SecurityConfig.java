@@ -83,7 +83,8 @@ public class SecurityConfig {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowedOrigins(List.of(
                 "http://localhost:3000",
-                "https://mes-frontend-zoyo-n21n4bd6k-2dean.vercel.app" // 추가!
+                "https://mes-frontend-zoyo-n21n4bd6k-2dean.vercel.app", // 추가!
+                "https://mes-frontend-zoyo.vercel.app" // 추가!
         ));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH"));
         config.setAllowedHeaders(List.of("*"));
