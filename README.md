@@ -6,8 +6,7 @@
 - TMS(운송관리시스템) 실무 경험을 바탕으로, 생산 현장의 실적/작업지시 흐름을 반영해 설계했습니다.
 
 ## 배포 URL
-- 프론트: https://mes-frontend-zoyo.vercel.app
-- 백엔드: https://mes-project-production.up.railway.app
+- https://mes-frontend-zoyo.vercel.app
 
 ## 테스트 계정
 | 구분 | 아이디 | 비밀번호 |
