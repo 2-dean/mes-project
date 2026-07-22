@@ -14,7 +14,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update # Entity 변경시 자동으로 테이블에 반영(데이터유지)
-    show-sql: true #실행되는 sql을 콘솔에 출력(개발할때편함)
+    show-sql: false #실행되는 sql을 콘솔에 출력(개발할때편함)
     defer-datasource-initialization: true  # Hibernate 스키마 생성 후 data.sql 실행
     properties:
       hibernate:

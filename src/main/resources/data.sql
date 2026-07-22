@@ -1,6 +1,7 @@
 -- =============================================
 -- DELETE (FK 순서 주의: 자식 → 부모)
 -- =============================================
+
 DELETE FROM MES_PROD_INCENTIVE;
 DELETE FROM MES_DAILY_CLOSE;
 DELETE FROM MES_MONTH_CLOSE;
